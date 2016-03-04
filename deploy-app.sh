@@ -6,6 +6,7 @@
 # internal document root).
 #
 # Usage:  deploy-app appname
+#         deploy-app apprepo/appname
 #
 # NOTE:  If the application directory (which MUST match `appname`)
 #        contains a "public" directory (as a direct descendant)
@@ -13,6 +14,11 @@
 #        otherwise the application's root directory will be used.
 #        Example:
 #            App Directory Tree     Produces Symlink
+#            myapprepo/             Web -> Applications/myapprepo/myapp/public/
+#               myapp/
+#                  data/
+#                  include/
+#                  public/
 #            ---------------------------------------------------------
 #            myapp/                 Web -> Applications/myapp/public/
 #               data/
@@ -24,7 +30,7 @@
 #-------------------------------------------------------------------------------
 # The MIT License (MIT)
 #
-# Copyright (c) 2015 Jason L Causey, Arkansas State University
+# Copyright (c) 2015-2016 Jason L Causey, Arkansas State University
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -60,10 +66,13 @@ then
     echo # newline
     echo "Usage: "
     echo "  $0 appname"
+    echo "  $0 apprepo/appname"
     echo # newline
     echo "  Where \"appname\" is the top-level directory name of the application"
-    echo "  that you wish to deploy."
-    echo "  The application must be located in the \"Applications\" directory."
+    echo "  that you wish to deploy. And \"apprepo\" is the (optional) name of"
+    echo "  a repository top-level directory that actually contains your app."
+    echo "  The application (or repo) must be located in the \"Applications\""
+    echo "  directory."
     echo # newline
     exit 1
 fi
